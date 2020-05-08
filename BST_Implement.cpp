@@ -8,7 +8,7 @@ struct tnode{
 	struct tnode*left, *right;
 }*root = NULL;
 
-
+//create a node
 struct tnode *newNode(char name[], int age){
 	struct tnode	*temp = (struct tnode*)malloc(sizeof(struct tnode));
 	strcpy(temp->name, name);
@@ -17,13 +17,16 @@ struct tnode *newNode(char name[], int age){
 	return temp;
 }
 
+//insert a node
 void insert(char name[], int age){
+	//insert name and age to a node
 	struct tnode *node = newNode(name, age);
-
+	//if there is no node
 	if(!root) root = node;
 	else{
 		struct tnode *curr = root;
 		while(curr){
+			//if the name that we want to insert is smaller 
 			if(strcmp(name, curr->name) < 0){
 				if(curr->left) curr = curr->left;
 				else{
@@ -41,6 +44,7 @@ void insert(char name[], int age){
 	}
 }
 
+//delete a name
 void delete_nama(struct tnode *node, struct tnode *parent){
 	if(!node->left && !node->right){
 		if(!parent){
@@ -86,6 +90,7 @@ void delete_nama(struct tnode *node, struct tnode *parent){
 	}
 }
 
+//find the name
 void cari_nama(char name[]){
 	struct tnode *parent = NULL;
 	if(root){
@@ -106,6 +111,7 @@ void cari_nama(char name[]){
 	}
 }
 
+//print the node inorder
 void inOrder(struct tnode *node){
 	if (node){
 		inOrder(node->left);
@@ -144,3 +150,5 @@ int main() {
 	}while(choose != 4);
 	return 0;
 }
+
+//created by putud
