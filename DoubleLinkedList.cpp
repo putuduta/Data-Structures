@@ -6,6 +6,7 @@ struct data{
 	struct data *prev,*next;
 }*head = NULL, *tail = NULL;
 
+//create a node
 struct data *newNode(int x){
 	data *node = (data*)malloc(sizeof(data));
 	node->nim = x;
@@ -13,6 +14,7 @@ struct data *newNode(int x){
 	node->prev = NULL;
 }
 
+//to insert a node in the head
 void pushHead(int x){
 	data *node = newNode(x);
 	if(!head){
@@ -24,6 +26,7 @@ void pushHead(int x){
 	}
 }
 
+//to insert a node in the tail
 void pushTail(int x){
 	data *node = newNode(x);
 	if (!tail){
@@ -36,11 +39,15 @@ void pushTail(int x){
 	}
 }
 
+//to insert a node in order
 void pushMid(int x){
+	//if there is only head
 	if(head==tail)
 		pushHead(x);
+	//if the head value is bigger than x
 	else if(head->nim > x)
 		pushHead(x);
+	//if the tail value is smaller than x
 	else if(tail->nim < x)
 		pushTail(x);
 	else{
@@ -57,7 +64,7 @@ void pushMid(int x){
 }
 
 
-
+//delete node in the head
 void popHead(){
 	if(head){
 		if(head == tail){
@@ -73,6 +80,7 @@ void popHead(){
 		printf("Data kosong\n");
 }
 
+//delete node in the tail
 void popTail(){
 	if(head){
 		if(head == tail){
@@ -90,17 +98,21 @@ void popTail(){
 
 void popKey(int x){
 	if(head){
+		//if the key is in the head
 		if(head->nim == x)
 			popHead();
+		//if the key is the tail
 		else if(tail->nim == x)
 			popTail();
 		else{
 			data *curr = head;
+			//check until the end of the node
 			while(curr->next != tail){
 				if(curr->nim == x)
 					break;
 				curr = curr->next;
 			}
+			//if the key is found
 			if(curr->nim == x){
 				data *temp = curr->next;
 				temp->prev = curr->prev;
@@ -113,6 +125,7 @@ void popKey(int x){
 		printf("Data Kosong\n");
 }
 
+//print the node
 void print(){
 	data *curr = head;
 	while (curr){
