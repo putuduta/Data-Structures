@@ -2,6 +2,8 @@
 #include<stdlib.h>
 #include<string.h>
 
+//Word Processor Program Created by putud
+
 struct data{
     char word[100];
     struct data *next, *prev;
@@ -9,6 +11,7 @@ struct data{
 
 int i = 1;
 
+//create node
 struct data *newNode(char word[]){
     data *node = (data *)malloc(sizeof(data));
     strcpy(node->word, word);
@@ -16,7 +19,7 @@ struct data *newNode(char word[]){
     node->prev = NULL;
 }
 
-
+//insert word at the end
 void insertAtEnd(char word[]) {
     data *node = newNode(word);
     if (!tail){
@@ -29,6 +32,7 @@ void insertAtEnd(char word[]) {
     }
 }
 
+//insert word after word that we want to
 void insertAfter(char word1[], char word2[]) {
     struct data *curr2 = newNode(word2);
     if (head == tail)
@@ -54,6 +58,7 @@ void insertAfter(char word1[], char word2[]) {
     }
 }
 
+//undo the word
 void undo() {
     if (head) {
         if (head == tail) {
@@ -71,10 +76,12 @@ void undo() {
         printf("Empty\n");
 }
 
+//find a word
 void search_word(char word[]){
     struct data *curr = head;
     i = 1;
     while(curr){
+        //if the word is found
         if (strcmp(curr->word, word) != 0)
             break;
         curr = curr->next;
@@ -87,12 +94,15 @@ void search_word(char word[]){
         printf("Word not found");
 }
 
+//edit the word
 void edit_word(char word5[], char word4[]){
     struct data *curr = head;
     while (curr) {
+        //if the word is found
         if (strcmp(curr->word, word5) != 0) break;
             curr = curr->next;
     }
+    //copy the word from the word4 to curr->word
     if(strcmp(curr->word, word5) == 0){
         strcpy(curr->word, word4);
     }else{
@@ -101,7 +111,7 @@ void edit_word(char word5[], char word4[]){
     puts("");
 }
 
-
+//display all the word
 void display() {
     data *curr = head;
     while (curr) {
@@ -110,6 +120,7 @@ void display() {
     }
 }
 
+//free all the word
 void freeAll(){
     while(head){
         free(head);
