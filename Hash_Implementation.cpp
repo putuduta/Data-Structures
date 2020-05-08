@@ -2,12 +2,15 @@
 #include <string.h>
 #include <stdlib.h>
 
+//Food Storage Program with Hash Chaining
+
 struct data {
     char food[100];
     int price;
     struct data *next, *prev;
 };
 
+//to print all the hash
 void print(struct data *head[100]) {
 
     for (int i = 0; i < 100; i++) {
@@ -29,6 +32,7 @@ void print(struct data *head[100]) {
     }
 }
 
+//to create a node
 struct data *insertNode(char nama[], int price) {
     struct data *newNode = (struct data *)malloc(sizeof(struct data));
     newNode->price = price;
@@ -37,6 +41,7 @@ struct data *insertNode(char nama[], int price) {
     newNode->prev = NULL;
 }
 
+//insert node to hash chaining
 void insert(struct data **slot, struct data **tail, char nama[], int price) {
 
     struct data *newNode = insertNode(nama, price);
@@ -57,6 +62,7 @@ void insert(struct data **slot, struct data **tail, char nama[], int price) {
     }
 }
 
+//find key
 void insert_el(struct data *head[], struct data *tail[], char nama[], int price) {
     int l = strlen(nama);
     int val = 0;
@@ -71,6 +77,7 @@ void insert_el(struct data *head[], struct data *tail[], char nama[], int price)
 
     insert(&head[key], &tail[key], nama, price);
 }
+
 
 int main() {   
     struct data *head[100];
@@ -105,3 +112,5 @@ int main() {
     }while(choose != 3);
     return 0;
 }
+
+//created by putud
